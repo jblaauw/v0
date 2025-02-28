@@ -21,9 +21,16 @@ export function ReviewCard(review: Review) {
           <div className="flex">
             {Array(5)
               .fill(null)
-              .map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-primary text-primary" />
-              ))}
+              .map((_, i) => {
+                const rating = parseInt(review.fields.rating);
+                const fillClass = rating <= i ? "" : " fill-primary";
+                return (
+                  <Star
+                    key={i}
+                    className={`w-5 h-5 text-primary${fillClass}`}
+                  />
+                );
+              })}
           </div>
           <p className="text-center text-muted-foreground">
             {review.fields.reviewText}
