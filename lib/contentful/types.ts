@@ -15,3 +15,20 @@ export interface Review {
     rating: string;
   };
 }
+
+export interface USP {
+  sys: {
+    id: string;
+  };
+  fields: {
+    name: string;
+    image: {
+      fields: {
+        file: {
+          url: string;
+        };
+      };
+    };
+    description: string;
+  };
+}

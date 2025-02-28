@@ -4,17 +4,18 @@ import { Hero } from "@/components/hero";
 import { USPs } from "@/components/usps";
 import { Reviews } from "@/components/reviews";
 import { Newsletter } from "@/components/newsletter";
-import { getAllReviews } from "@/lib/contentful/client";
+import { getAllReviews, getAllUSPs } from "@/lib/contentful/client";
 
 export default async function LandingPage() {
   const reviews = await getAllReviews();
+  const usps = await getAllUSPs();
 
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
         <Hero />
-        <USPs />
+        <USPs data={usps} />
         <Reviews data={reviews} />
         <Newsletter />
       </main>

@@ -1,5 +1,5 @@
 import { createClient } from "contentful";
-import type { Review } from "./types.ts";
+import type { Review, USP } from "./types.ts";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID!,
@@ -12,6 +12,18 @@ export async function getAllReviews(): Promise<Review[]> {
       content_type: "customerReview",
     });
     return response.items as unknown as Review[];
+  } catch (error) {
+    console.error("Error fetching fragrances:", error);
+    return [];
+  }
+}
+
+export async function getAllUSPs(): Promise<USP[]> {
+  try {
+    const response = await client.getEntries({
+      content_type: "usp",
+    });
+    return response.items as unknown as USP[];
   } catch (error) {
     console.error("Error fetching fragrances:", error);
     return [];
